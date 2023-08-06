@@ -3,20 +3,24 @@ import { getContact } from "../contacts";
 
 export async function loader({ params }) {
   const contact = await getContact(params.contactId);
-  return { contact };
+  if (!contact) {
+    throw new Response("", {
+      status: 404,
+      statusText: "Not Found",
+    });
+  }
+  return contact;
+}
+
+export async function action({ request, params }) {
+  let formData = await request.formData();
+  return updateContact(params.contactId, {
+    favorite: formData.get("favorite") === "true",
+  });
 }
 
 export default function Contact() {
-  const { contact } = useLoaderData();
-  // const contact = {
-  //   first: "Your",
-  //   last: "Name",
-  //   avatar: "https://placekitten.com/g/200/200",
-  //   twitter: "your_handle",
-  //   notes: "Some notes",
-  //   favorite: true,
-  // };
-
+  const { contact } = useLoaderData(); 
   return (
     <div id="contact">
       <div>
