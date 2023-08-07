@@ -3,8 +3,10 @@ export default function Index() {
     <p id="zero-state">
       This is a demo for React Router.
       <br />
-      Check out{" "}
-      <a href="https://reactrouter.com/">the docs at reactrouter.com</a>.
+
+      <a href="https://www.linkedin.com/in/romulo-henri/" target="_blank">
+				Desenvolvido por Rômulo Henri (2023)
+			</a>
     </p>
   );
 }
