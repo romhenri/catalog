@@ -10,6 +10,8 @@ import {
 } from "react-router-dom";
 import { getContacts, createContact } from "../contacts";
 import { useEffect } from "react";
+import localforage from "localforage"; // Added
+// import { saveAs } from "../FileSaver"; // Added
 
 export async function action() {
   const contact = await createContact();
@@ -21,6 +23,27 @@ export async function loader({ request }) {
   const q = url.searchParams.get("q");
   const contacts = await getContacts(q);
   return { contacts, q };
+}
+
+let contacts = await localforage.getItem("contacts");
+
+function saveJSON() {
+  // console.log(contacts);
+
+  // const blob = new Blob([contacts], { type: 'application/json' })
+	// const url = URL.createObjectURL(blob)
+
+  // const blob = new Blob([contacts], { type: 'application/json' })
+
+  const jsonFormatted = JSON.stringify(contacts);
+
+  // console.log(url);
+  // console.log(blob);
+  console.log(contacts);
+
+  const blob = new Blob([jsonFormatted], { type: "application/json" });
+
+  saveAs(blob, 'catalogData')
 }
 
 export default function Root() {
@@ -35,11 +58,12 @@ export default function Root() {
   useEffect(() => {
     document.getElementById("q").value = q;
   }, [q]);
-
+  
   return (
     <>
       <div id="sidebar">
         <h1>React Router Contacts</h1>
+        
         <div>
           <Form id="search-form" role="search">
             <input
@@ -63,6 +87,10 @@ export default function Root() {
           <Form method="post">
             <button type="submit">New</button>
           </Form>
+        </div>
+        <div id="dataHandler">
+          <button onClick={saveJSON}> Save </button>
+          <button className="disabled" disabled> Load </button>
         </div>
         <nav>
           {contacts.length ? (
@@ -93,7 +121,9 @@ export default function Root() {
             </p>
           )}
         </nav>
+       
       </div>
+      
       <div
         id="detail"
         className={navigation.state === "loading" ? "loading" : ""}
