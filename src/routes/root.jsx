@@ -25,9 +25,8 @@ export async function loader({ request }) {
   return { contacts, q };
 }
 
-let contacts = await localforage.getItem("contacts");
-
-function saveJSON() {
+async function saveJSON() {
+  let contacts = await localforage.getItem("contacts");
   // console.log(contacts);
 
   // const blob = new Blob([contacts], { type: 'application/json' })
