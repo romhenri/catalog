@@ -26,23 +26,30 @@ export async function loader({ request }) {
 }
 
 async function saveJSON() {
+  // Pega o Objecto;
   let contacts = await localforage.getItem("contacts");
-  // console.log(contacts);
-
-  // const blob = new Blob([contacts], { type: 'application/json' })
-	// const url = URL.createObjectURL(blob)
-
-  // const blob = new Blob([contacts], { type: 'application/json' })
-
+  // Transforma Objeto em String;
   const jsonFormatted = JSON.stringify(contacts);
 
-  // console.log(url);
-  // console.log(blob);
   console.log(contacts);
 
+  // Transforma String em Arquivo Blob;
   const blob = new Blob([jsonFormatted], { type: "application/json" });
 
-  saveAs(blob, 'catalogData')
+  const date = getDateFormatted()
+
+  saveAs(blob, 'contactsData(' + date + ').json')
+}
+
+function getDateFormatted() {
+  var date = new Date();
+  var day = String(date.getDate()).padStart(2, '0');
+  var month = String(date.getMonth() + 1).padStart(2, '0');
+  var year = date.getFullYear();
+  var dateFormatted = day + '.' + month + '.' + year;
+  console.log(dateFormatted);
+  
+  return dateFormatted
 }
 
 export default function Root() {
