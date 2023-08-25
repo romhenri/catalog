@@ -19,8 +19,15 @@ export async function action({ request, params }) {
   });
 }
 
-export default function Contact() {
-  const contact = useLoaderData();
+export default function Contact(localData) {
+  var contact = null
+  
+  contact = useLoaderData();
+
+  if (localData =! {}) {
+    console.log(contact);
+  }
+
   return (
     <div id="contact">
       <div>

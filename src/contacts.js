@@ -51,7 +51,7 @@ export async function deleteContact(id) {
   return false;
 }
 
-function set(contacts) {
+export function set(contacts) {
   return localforage.setItem("contacts", contacts);
 }
 
