@@ -11,6 +11,9 @@ import {
 import { getContacts, createContact } from "../contacts";
 import { useEffect } from "react";
 import localforage from "localforage"; // Added
+import Contact from "./contact";
+import {set} from "../contacts"
+import { useNavigate } from "react-router-dom";
 // import { saveAs } from "../FileSaver"; // Added
 
 export async function action() {
@@ -39,6 +42,32 @@ async function saveJSON() {
   const date = getDateFormatted()
 
   saveAs(blob, 'contactsData(' + date + ').json')
+}
+
+async function loadJSON() {
+  var receiveFile = document.getElementById('fileInput')
+  var file = receiveFile.files[0]
+
+  receiveFile.addEventListener("change", () => {
+    file = receiveFile.files[0]
+    doIt(file)
+  })
+
+  function doIt(file) {
+    const reader = new FileReader();
+    
+    reader.onload = function(event) {
+        const jsonText = event.target.result;
+        const jsonObject = JSON.parse(jsonText);
+
+        console.log(jsonObject);
+        set(jsonObject)
+        window.location.reload(true);
+        useNavigate('/contacts');
+    };
+    
+    reader.readAsText(file);
+}
 }
 
 function getDateFormatted() {
@@ -96,7 +125,8 @@ export default function Root() {
         </div>
         <div id="dataHandler">
           <button onClick={saveJSON}> Save </button>
-          <button className="disabled" disabled> Load </button>
+          <label id="customButton" htmlFor="fileInput">Load</label>
+          <input type="file" onClick={loadJSON} name="Load" id="fileInput" accept="application/json"/>
         </div>
         <nav>
           {contacts.length ? (
