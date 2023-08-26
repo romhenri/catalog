@@ -128,6 +128,11 @@ form[action$="destroy"] button {
   border-width: 0;
 }
 
+.bio {
+  word-wrap: normal;
+  overflow: hidden;
+}
+
 #root {
   display: flex;
   height: 100%;
@@ -140,6 +145,18 @@ form[action$="destroy"] button {
 
 #dataHandler > * {
   flex-grow: 1;
+}
+
+#mobileToggle {
+  width: 50px;
+  height: 50px;
+  background-color: #1f4a7a;
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  border-radius: 50%;
+  z-index: 999;
+  display: none;
 }
 
 #sidebar {
@@ -282,6 +299,7 @@ i {
   flex: 1;
   padding: 2rem 4rem;
   width: 100%;
+  overflow: hidden;
 }
 
 #detail.loading {
@@ -307,7 +325,8 @@ i {
 }
 
 #contact h1 + p + p {
-  white-space: break-spaces;
+  /* white-space: break-spaces; */
+  white-space: normal;
 }
 
 #contact h1:focus {
@@ -419,4 +438,46 @@ i {
   align-items: center;
   justify-content: center;
   width: 100%;
+}
+
+.show {
+  transform: translateX(0);
+}
+
+@media (max-width: 600px) {
+ #mobileToggle{
+  display: block;
+ }
+
+  .show {
+    transform: translateX(0) !important;
+  }
+
+  #sidebar{
+    position: absolute;
+    transform: translateX(-100%);
+    transition: 0.3s;
+  }
+
+  #detail {
+    padding: 20px;
+  }
+
+  #detail h1 {
+    font-size: 1.6rem;
+    padding-top: 10px;
+  }
+
+  #detail a {
+    font-size: 0.8rem;
+  }
+
+  #detail .imgBox {
+    max-width: 50%;
+  }
+
+  .imgBox img {
+    max-width: 90%;
+    max-height: 90%;
+  }
 }
