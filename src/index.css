@@ -164,6 +164,22 @@ form[action$="destroy"] button {
   background-repeat: no-repeat;
 }
 
+.close {
+  background-image: url(./assets/close.svg) !important; 
+}
+
+#bgFilter {
+  position: absolute;
+  z-index: 997;
+  transition: .3s;
+}
+
+#bgFilter.active {
+  width: 100%;
+  height: 100%;
+  background-color: hsla(0, 0%, 7%, 0.400);
+}
+
 #sidebar {
   width: 22rem;
   background-color: #f7f7f7;
@@ -464,6 +480,7 @@ i {
     transform: translateX(-100%);
     transition: 0.3s;
     height: 100%;
+    max-width: 85%;
   }
 
   #detail {
@@ -481,10 +498,12 @@ i {
 
   #detail .imgBox {
     max-width: 50%;
+    max-height: 50%;
   }
 
   .imgBox img {
     max-width: 90%;
     max-height: 90%;
+    height: 10rem !important;
   }
 }

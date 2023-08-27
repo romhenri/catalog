@@ -98,12 +98,18 @@ export default function Root() {
   
   return (
     <>
-      <button id="mobileToggle"
+      <button id="mobileToggle" className={showSidebar ? 'close' : ''}
         onClick={() => {setShowSidebar(!showSidebar)}}>
-        <div className='line'></div>
-        <div className='line'></div>
-        <div className='line'></div>
-        </button>
+      </button>
+
+      <div id='bgFilter' className={showSidebar ? 'active' : ''}
+      onClick={() => {
+        if (showSidebar) {
+          setShowSidebar(!showSidebar)
+        }
+        }}>
+      </div>
+
       <div id="sidebar" className={showSidebar ? 'show' : ''}>
         <h1>React Router Contacts</h1>
         
