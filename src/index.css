@@ -148,15 +148,20 @@ form[action$="destroy"] button {
 }
 
 #mobileToggle {
-  width: 50px;
-  height: 50px;
-  background-color: #1f4a7a;
+  width: 60px;
+  height: 60px;
+  background-color: #f7f7f7;
+  border: solid 2px #3992ff;
   position: fixed;
-  bottom: 50px;
-  right: 50px;
+  bottom: 30px;
+  right: 30px;
   border-radius: 50%;
   z-index: 999;
   display: none;
+  background-image: url(./assets/menu.svg);
+  background-position: center;
+  background-size: 50%;
+  background-repeat: no-repeat;
 }
 
 #sidebar {
@@ -165,6 +170,7 @@ form[action$="destroy"] button {
   border-right: solid 1px #e3e3e3;
   display: flex;
   flex-direction: column;
+  z-index: 998;
 }
 
 #sidebar > * {
@@ -457,6 +463,7 @@ i {
     position: absolute;
     transform: translateX(-100%);
     transition: 0.3s;
+    height: 100%;
   }
 
   #detail {
