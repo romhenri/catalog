@@ -1,3 +1,4 @@
+import React from 'react'
 import {
   Link,
   Outlet,
@@ -85,6 +86,7 @@ export default function Root() {
   const { contacts, q } = useLoaderData();
   const navigation = useNavigation();
   const submit = useSubmit();
+  const [showSidebar, setShowSidebar] = React.useState(false)
 
   const searching =
     navigation.location &&
@@ -96,7 +98,10 @@ export default function Root() {
   
   return (
     <>
-      <div id="sidebar">
+      <div id="mobileToggle"
+        onClick={() => {setShowSidebar(!showSidebar)}}>
+        </div>
+      <div id="sidebar" className={showSidebar ? 'show' : ''}>
         <h1>React Router Contacts</h1>
         
         <div>

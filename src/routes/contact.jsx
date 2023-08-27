@@ -30,7 +30,7 @@ export default function Contact(localData) {
 
   return (
     <div id="contact">
-      <div>
+      <div className="imgBox">
         <img key={contact.avatar} src={contact.avatar || null} />
       </div>
 
@@ -54,7 +54,7 @@ export default function Contact(localData) {
           </p>
         )}
 
-        {contact.notes && <p>{contact.notes}</p>}
+        {contact.notes && <p className="bio">{contact.notes}</p>}
 
         <div>
           <Form action="edit">
