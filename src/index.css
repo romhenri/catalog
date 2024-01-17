@@ -8,11 +8,28 @@ html {
 }
 
 body {
+  --bg: #ffffff;
+  --bg2: #f7f7f7;
+  --bg3: #e3e3e3;
+  --border: #e3e3e3;
+  --color: #000000;
+}
+
+body.dark {
+  --bg: #2b2b2b;
+  --bg2: #222222;
+  --bg3: #222222;
+  --border: #302f2f;
+  --color: #b8b8b8;
+}
+
+body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg);
 }
 
 code {
@@ -36,9 +53,10 @@ button {
   border-radius: 8px;
   padding: 0.5rem 0.75rem;
   box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.2), 0 1px 2px hsla(0, 0%, 0%, 0.2);
-  background-color: white;
+  background-color: var(--bg);
   line-height: 1.5;
   margin: 0;
+  color: var(--color);
 }
 button {
   color: #3992ff;
@@ -52,6 +70,7 @@ textarea:hover,
 input:hover,
 button:hover {
   box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.6), 0 1px 2px hsla(0, 0%, 0%, 0.2);
+  color: var(--color);
 }
 button.disabled:hover {
   box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.2), 0 1px 2px hsla(0, 0%, 0%, 0.2);
@@ -74,7 +93,8 @@ button.disabled:active {
   font-size: 1rem;
   font-family: inherit;
   box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.2), 0 1px 2px hsla(0, 0%, 0%, 0.2);
-  background-color: white;
+  background-color: var(--bg);
+  line-height: 1.5;
   color: #3992ff;
   border: none;
   border-radius: 8px;
@@ -82,6 +102,7 @@ button.disabled:active {
   cursor: pointer;
   line-height: 1.5;
   font-weight: 500;
+  text-align: center;
 }
 
 #customButton:hover {
@@ -150,7 +171,7 @@ form[action$="destroy"] button {
 #mobileToggle {
   width: 60px;
   height: 60px;
-  background-color: #f7f7f7;
+  background-color: var(--bg2);
   border: solid 2px #3992ff;
   position: fixed;
   bottom: 30px;
@@ -182,11 +203,12 @@ form[action$="destroy"] button {
 
 #sidebar {
   width: 22rem;
-  background-color: #f7f7f7;
-  border-right: solid 1px #e3e3e3;
+  background-color: var(--bg2);
+  border-right: solid 1px var(--border);
   display: flex;
   flex-direction: column;
   z-index: 998;
+  color: var(--color);
 }
 
 #sidebar > * {
@@ -201,7 +223,7 @@ form[action$="destroy"] button {
   align-items: center;
   margin: 0;
   padding: 1rem 2rem;
-  border-top: 1px solid #e3e3e3;
+  border-top: 1px solid var(--border);
   order: 1;
   line-height: 1;
 }
@@ -219,7 +241,7 @@ form[action$="destroy"] button {
   gap: 0.5rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid #e3e3e3;
+  border-bottom: 1px solid var(--border);
 }
 
 #sidebar > div form {
@@ -305,12 +327,13 @@ i {
 }
 
 #sidebar nav a:hover {
-  background: #e3e3e3;
+  background: var(--bg3);
 }
 
 #sidebar nav a.active {
   background: hsl(224, 98%, 58%);
-  color: white;
+  color: var(--color);
+  line-height: 1.5;
 }
 
 #sidebar nav a.pending {
@@ -366,10 +389,15 @@ i {
   text-decoration: underline;
 }
 
+.imgBox {
+  outline: none;
+  border: none !important;
+}
+
 #contact img {
   width: 12rem;
   height: 12rem;
-  background: #c8c8c8;
+  background: var(--bg3);
   margin-right: 2rem;
   border-radius: 1.5rem;
   object-fit: cover;
@@ -401,6 +429,7 @@ i {
 #contact-form p:first-child span,
 #contact-form label span {
   width: 8rem;
+  color: var(--color);
 }
 #contact-form p:first-child input,
 #contact-form label input,
@@ -432,6 +461,7 @@ i {
 
 #contact-form p:last-child button[type="button"] {
   color: inherit;
+  color: var(--color);
 }
 
 #zero-state {
@@ -445,7 +475,7 @@ i {
 }
 
 #zero-state a:hover {
-  color: #121212;
+  color: var(--color);
 }
 
 #zero-state:before {
@@ -500,7 +530,7 @@ i {
     max-width: 50%;
     max-height: 50%;
   }
-
+  
   .imgBox img {
     max-width: 90%;
     max-height: 90%;
